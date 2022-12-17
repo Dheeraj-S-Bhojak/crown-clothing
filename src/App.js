@@ -1,7 +1,7 @@
+import Directory from "./components/directory/directory.component.jsx";
+
 const App = () => {
-  return(
-    <h1>hello</h1>
-  )
-}
+  return <Directory />;
+};
 
 export default App;
