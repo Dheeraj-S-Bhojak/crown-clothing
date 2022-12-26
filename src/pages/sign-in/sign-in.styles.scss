@@ -1,0 +1,75 @@
+.textBox {
+  position: relative;
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.5);
+  label {
+    margin-left: 36%;
+    position: absolute;
+    display: grid;
+    place-items: center;
+    transform-origin: 0% 0%;
+    pointer-events: none;
+    left: 4px;
+    height: 40px;
+    width: 110px;
+    border-radius: 27px;
+    background: #6f7072;
+    transition: 0.3s;
+  }
+  .firstLabel {
+    top: 5px;
+  }
+  .secondLabel {
+    top: 70px;
+  }
+  .thirdLabel {
+    top: 135px;
+  }
+  .fourthLabel {
+    top: 200px;
+  }
+  input {
+    position: relative;
+    margin-left: 36%;
+    min-width: 30%;
+    height: 50px;
+    border-radius: 30px;
+    background: #cccbcb;
+    border: 0;
+    padding-left: 126px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #444;
+    transition: 0.3s;
+    &::placeholder {
+      color: rgba(46, 44, 44, 0.5);
+    }
+  }
+  .buttons {
+    display: block;
+    margin-top: 1%;
+    margin-right: 34.5%;
+    margin-left: 36.5%;
+    border-radius: 27px;
+    .signInCenter { 
+      border-radius: 27px;
+      margin-bottom: 5px;
+      width: auto;
+    }
+    .signInGoogleCenter {
+      border-radius: 27px;
+      float: right;
+      width: 72px;
+      #icon {
+        color: rgb(26, 21, 21);
+      }
+    }
+  }
+}
+.textBox :is(input:focus, input :valid) {
+  padding-left: 20px;
+}
+.textBox :is(input:focus, input :valid) ~ label {
+  translate: -110px 0;
+  scale: 0.825;
+}
