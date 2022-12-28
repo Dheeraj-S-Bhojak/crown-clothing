@@ -1,6 +1,14 @@
 import "./sign-up.styles.scss";
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
+import {
+  createAuthUserWithEmailAndPassword,
+  createUserDocumentFromAuth,
+} from "../../utils/firebase/firebase.utils";
+
+import FormInput from "../../components/form-input/form-input.component";
 
 const SignUp = () => {
   const [formFields, setFromFields] = useState({
@@ -12,6 +20,27 @@ const SignUp = () => {
   const { displayName, email, password, confirmPassword } = formFields;
   console.log("form", formFields);
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (password !== confirmPassword) {
+      alert("password not matched");
+      return;
+    }
+
+    try {
+      const user = await createAuthUserWithEmailAndPassword(email, password);
+      await createUserDocumentFromAuth(user, { displayName });
+      console.log("hello", user);
+    } catch (error) {
+      if (error.code === "auth/email-already-in-use") {
+        alert("cannot create user, Email is already In user");
+      } else {
+        console.log(`user creation encountered error: ${error}`);
+      }
+    }
+  };
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFromFields({
@@ -21,22 +50,27 @@ const SignUp = () => {
   };
   return (
     <>
-      <h1>Sign Up</h1>
+      <h1 className="headingCenter">CROWN CLOTHING</h1>
+      <h6 className="headingCenter mb-5">sign up with email and password</h6>
+      <hr className="signUpHR" />
       <div className="textBox">
-        <form onSubmit={() => {}}>
+        <form onSubmit={handleSubmit}>
           <p>
-            <input
+            <FormInput
+              labelClassName="firstLabel"
+              label="name"
+              required
               type="text"
               placeholder="Display name"
               onChange={handleChange}
-              required
               name="displayName"
               value={displayName}
             />
-            <label className="firstLabel">Name</label>
           </p>
           <p>
-            <input
+            <FormInput
+              labelClassName="secondLabel"
+              label="Email"
               required
               type="email"
               placeholder="Type email"
@@ -44,10 +78,11 @@ const SignUp = () => {
               name="email"
               value={email}
             />
-            <label className="secondLabel">Email</label>
           </p>
           <p>
-            <input
+            <FormInput
+              labelClassName="thirdLabel"
+              label="Password"
               required
               type="password"
               placeholder="Type password"
@@ -55,10 +90,11 @@ const SignUp = () => {
               name="password"
               value={password}
             />
-            <label className="thirdLabel">Password</label>
           </p>
           <p>
-            <input
+            <FormInput
+              labelClassName="fourthLabel"
+              label="Password"
               required
               type="password"
               placeholder="Confirm password"
@@ -66,12 +102,17 @@ const SignUp = () => {
               name="confirmPassword"
               value={confirmPassword}
             />
-            <label className="fourthLabel">Re-Type</label>
           </p>
-          <p> ALready </p>
+          <p className=" text-color-2">
+            Already Have An Account?{" "}
+            <Link to="/sign-in">
+              {" "}
+              SIGN-UP <i className="fa-solid fa-arrow-right-to-bracket"></i>
+            </Link>
+          </p>
           <div className="buttons">
-            <button type="button" className="btn btn-secondary signUpCenter">
-              SIGN-UP
+            <button type="submit" className="btn btn-secondary signUpCenter">
+              SIGN-IN
             </button>
           </div>
         </form>

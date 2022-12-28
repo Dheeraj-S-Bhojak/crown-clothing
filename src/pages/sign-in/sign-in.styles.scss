@@ -2,6 +2,7 @@
   position: relative;
   font-size: 18px;
   color: rgba(255, 255, 255, 0.5);
+
   label {
     margin-left: 36%;
     position: absolute;
@@ -51,7 +52,7 @@
     margin-right: 34.5%;
     margin-left: 36.5%;
     border-radius: 27px;
-    .signInCenter { 
+    .signInCenter {
       border-radius: 27px;
       margin-bottom: 5px;
       width: auto;
@@ -65,7 +66,13 @@
       }
     }
   }
+  .text-color-2 {
+    color: #333;
+    font-size: 15px;
+    margin-left: 36%;
+  }
 }
+
 .textBox :is(input:focus, input :valid) {
   padding-left: 20px;
 }
