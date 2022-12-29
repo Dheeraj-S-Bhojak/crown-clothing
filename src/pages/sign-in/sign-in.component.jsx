@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import {
@@ -8,6 +8,8 @@ import {
 } from "../../utils/firebase/firebase.utils";
 import FormInput from "../../components/form-input/form-input.component";
 
+import { UserContext } from "../../contexts/user.context";
+
 import "./sign-in.styles.scss";
 
 const SignIn = () => {
@@ -16,13 +18,13 @@ const SignIn = () => {
     password: "",
   });
   const { email, password } = formFields;
-  console.log("form", formFields);
+  const { setCurrentUser } = useContext(UserContext);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const res = await signInAuthUserWithEmailAndPassword(email, password);
-      console.log("hello", res);
+      const user = await signInAuthUserWithEmailAndPassword(email, password);
+      setCurrentUser(user);
     } catch (error) {
       console.log(`user creation encountered error: ${error}`);
     }

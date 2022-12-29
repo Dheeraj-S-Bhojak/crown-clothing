@@ -1,6 +1,6 @@
 import "./sign-up.styles.scss";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import {
@@ -9,6 +9,7 @@ import {
 } from "../../utils/firebase/firebase.utils";
 
 import FormInput from "../../components/form-input/form-input.component";
+import { UserContext } from "../../contexts/user.context";
 
 const SignUp = () => {
   const [formFields, setFromFields] = useState({
@@ -18,6 +19,8 @@ const SignUp = () => {
     confirmPassword: "",
   });
   const { displayName, email, password, confirmPassword } = formFields;
+
+  const { setCurrentUser } = useContext(UserContext);
   console.log("form", formFields);
 
   const handleSubmit = async (event) => {
@@ -30,6 +33,7 @@ const SignUp = () => {
 
     try {
       const user = await createAuthUserWithEmailAndPassword(email, password);
+      setCurrentUser(user);
       await createUserDocumentFromAuth(user, { displayName });
       console.log("hello", user);
     } catch (error) {
@@ -112,7 +116,7 @@ const SignUp = () => {
           </p>
           <div className="buttons">
             <button type="submit" className="btn btn-secondary signUpCenter">
-              SIGN-IN
+              SIGN-UP
             </button>
           </div>
         </form>
