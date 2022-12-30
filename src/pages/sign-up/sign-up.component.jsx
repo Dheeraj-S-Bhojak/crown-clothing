@@ -1,6 +1,6 @@
 import "./sign-up.styles.scss";
 
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 import {
@@ -9,19 +9,23 @@ import {
 } from "../../utils/firebase/firebase.utils";
 
 import FormInput from "../../components/form-input/form-input.component";
-import { UserContext } from "../../contexts/user.context";
+
+const defaultFormFields = {
+  displayName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
 
 const SignUp = () => {
-  const [formFields, setFromFields] = useState({
-    displayName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
+  const [formFields, setFromFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
-  const { setCurrentUser } = useContext(UserContext);
   console.log("form", formFields);
+
+  const resetFormFields = () => {
+    setFromFields(defaultFormFields);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -33,9 +37,9 @@ const SignUp = () => {
 
     try {
       const user = await createAuthUserWithEmailAndPassword(email, password);
-      setCurrentUser(user);
+
       await createUserDocumentFromAuth(user, { displayName });
-      console.log("hello", user);
+      resetFormFields();
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         alert("cannot create user, Email is already In user");
@@ -88,7 +92,7 @@ const SignUp = () => {
               labelClassName="thirdLabel"
               label="Password"
               required
-              type="password"
+              type="Password"
               placeholder="Type password"
               onChange={handleChange}
               name="password"
@@ -100,7 +104,7 @@ const SignUp = () => {
               labelClassName="fourthLabel"
               label="Password"
               required
-              type="password"
+              type="Password"
               placeholder="Confirm password"
               onChange={handleChange}
               name="confirmPassword"
@@ -111,7 +115,7 @@ const SignUp = () => {
             Already Have An Account?{" "}
             <Link to="/sign-in">
               {" "}
-              SIGN-UP <i className="fa-solid fa-arrow-right-to-bracket"></i>
+              SIGN-IN <i className="fa-solid fa-arrow-right-to-bracket"></i>
             </Link>
           </p>
           <div className="buttons">

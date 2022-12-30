@@ -8,23 +8,26 @@ import {
 } from "../../utils/firebase/firebase.utils";
 import FormInput from "../../components/form-input/form-input.component";
 
-import { UserContext } from "../../contexts/user.context";
-
 import "./sign-in.styles.scss";
 
+const defaultFormFields = {
+  email: "",
+  password: "",
+};
+
 const SignIn = () => {
-  const [formFields, setFromFields] = useState({
-    email: "",
-    password: "",
-  });
+  const [formFields, setFromFields] = useState(defaultFormFields);
   const { email, password } = formFields;
-  const { setCurrentUser } = useContext(UserContext);
+
+  const resetFormFields = () => {
+    setFromFields(defaultFormFields);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const user = await signInAuthUserWithEmailAndPassword(email, password);
-      setCurrentUser(user);
+      resetFormFields();
     } catch (error) {
       console.log(`user creation encountered error: ${error}`);
     }
@@ -39,8 +42,7 @@ const SignIn = () => {
   };
 
   const logGoogleUser = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
   };
 
   return (
@@ -68,7 +70,7 @@ const SignIn = () => {
               labelClassName="secondLabel"
               label="Password"
               required
-              type="password"
+              type="Password"
               placeholder="Type password"
               onChange={handleChange}
               name="password"
@@ -78,7 +80,7 @@ const SignIn = () => {
 
           <p className=" text-color-2">
             New to CRWN CLOTHING?{" "}
-            <Link to="/log-in">
+            <Link to="/sign-up">
               {" "}
               SIGN-UP <i className="fa-solid fa-arrow-right-to-bracket"></i>
             </Link>
