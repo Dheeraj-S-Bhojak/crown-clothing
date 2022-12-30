@@ -1,5 +1,4 @@
 import CategoryList from "../categories-list/categories-list.components";
-import "../categories-list/categories-list.styles.scss";
 import "./directory.styles.scss";
 const Directory = () => {
   const productCategories = [
