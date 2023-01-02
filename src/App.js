@@ -4,6 +4,7 @@ import NavigationBar from "./components/navigation/navigation.component.jsx";
 import Shop from "./pages/shop/shop.component.jsx";
 import SignIn from "./pages/sign-in/sign-in.component.jsx";
 import SignUp from "./pages/sign-up/sign-up.component.jsx";
+import Checkout from "./pages/checkout/checkout.component.jsx";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/shop" element={<Shop />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Route>
     </Routes>
   );
