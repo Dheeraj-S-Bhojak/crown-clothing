@@ -5,6 +5,11 @@ export const BUTTON_TYPE_CLASSES = {
   inverted: "inverted",
 };
 
+/**
+ * Button
+ * @param {*} param
+ * @returns jsx Format
+ */
 const Button = ({ children, buttonType, ...otherProps }) => {
   return (
     <button

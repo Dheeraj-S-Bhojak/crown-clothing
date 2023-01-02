@@ -1,5 +1,11 @@
 import CategoryList from "../categories-list/categories-list.components";
 import "./directory.styles.scss";
+
+/**
+ * Directory
+ *  Directory responsible for home page categories
+ *  @returns {object}
+ */
 const Directory = () => {
   const productCategories = [
     {

@@ -5,11 +5,14 @@ import { ProductContext } from "../../contexts/product.context";
 
 import "./shop.styles.scss";
 
+/**
+ * Shop
+ *  Shop responsible for take object and return Shop object jsx format
+ *  @returns {object}
+ */
 const Shop = () => {
-  console.log("hello_ji");
+  //products de-structure from ProductContext
   const { products } = useContext(ProductContext);
-
-  console.log(products);
   return (
     <div className="products-container">
       {products.map((product) => {

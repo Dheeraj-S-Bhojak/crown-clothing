@@ -1,4 +1,6 @@
 import { initializeApp } from "firebase/app";
+
+//import firebase auth function
 import {
   getAuth,
   signInWithRedirect,
@@ -10,8 +12,13 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
+// import fireStore function from fireBase
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 
+/**
+ * firebaseConfig
+ * web app's Firebase configuration
+ */
 const firebaseConfig = {
   apiKey: "AIzaSyA7mPxEhE3DC-pcp3vejh0WHHBuB0ziBTM",
   authDomain: "crwn-clothing-db-fe79c.firebaseapp.com",
@@ -21,22 +28,41 @@ const firebaseConfig = {
   appId: "1:320143628124:web:e67bc711ef13abaf36d399",
 };
 
+// Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 
+// it is google authentic provider
 const googleProvider = new GoogleAuthProvider();
 
 googleProvider.setCustomParameters({
   prompt: "select_account",
 });
 
+//for authorized of user
 export const auth = getAuth();
+
+/**
+ * signInWithGooglePopup
+ * @returns authUser
+ */
 export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);
 
+/**
+ * signInWithGoogleRedirect
+ * @returns authUser
+ */
 export const signInWithGoogleRedirect = () =>
   signInWithRedirect(auth, googleProvider);
 
 export const db = getFirestore();
+
+/**
+ * createUserDocumentFromAuth
+ * create user with google auth in fireBase
+ * @param {Object} userAuth
+ * @returns
+ */
 export const createUserDocumentFromAuth = async (userAuth) => {
   if (!userAuth) return;
   console.log("hello user", userAuth);
@@ -60,17 +86,39 @@ export const createUserDocumentFromAuth = async (userAuth) => {
   return userDocRef;
 };
 
+/**
+ * createAuthUserWithEmailAndPassword
+ * @param {String} email
+ * @param {String} password
+ * @returns {Object}
+ */
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
   return await createUserWithEmailAndPassword(auth, email, password);
 };
 
+/**
+ * signInAuthUserWithEmailAndPassword
+ * @param {String} email
+ * @param {String} password
+ * @returns{Object}
+ */
 export const signInAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
   return await signInWithEmailAndPassword(auth, email, password);
 };
 
+/**
+ * signOutUser
+ * @returns
+ */
 export const signOutUser = async () => await signOut(auth);
 
+/**
+ *onAuthStateChangedListener
+ it is the observer of user auth 
+ * @param {*} callback
+ * @returns
+ */
 export const onAuthStateChangedListener = (callback) =>
   onAuthStateChanged(auth, callback);

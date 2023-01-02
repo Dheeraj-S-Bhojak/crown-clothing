@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 import {
   signInWithGooglePopup,
-  createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 import FormInput from "../../components/form-input/form-input.component";
@@ -15,14 +14,21 @@ const defaultFormFields = {
   password: "",
 };
 
+/**
+ * SignIn
+ *  SignIn responsible for take object and return SignIn object jsx format
+ *  @returns {object}
+ */
 const SignIn = () => {
   const [formFields, setFromFields] = useState(defaultFormFields);
   const { email, password } = formFields;
 
+  //resetFormFields for clear the form fields
   const resetFormFields = () => {
     setFromFields(defaultFormFields);
   };
 
+  // handleSubmit for submit the form and wait for result
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -33,6 +39,7 @@ const SignIn = () => {
     }
   };
 
+  // handleChange for set the state value from form data
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFromFields({
@@ -41,6 +48,7 @@ const SignIn = () => {
     });
   };
 
+  // logGoogleUser for login the user from google pop up
   const logGoogleUser = async () => {
     await signInWithGooglePopup();
   };

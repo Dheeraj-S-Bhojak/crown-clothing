@@ -5,6 +5,12 @@ import "./cart-icon.styles.scss";
 
 import { CartContext } from "../../contexts/cart.context";
 
+/**
+ * CartIcon
+ *  CartIcon responsible for return CartLogo object jsx format
+ *  @returns {object}
+ */
+
 const CartIcon = () => {
   const { isCartOpen, setIsCartOpen, cartCount } = useContext(CartContext);
 

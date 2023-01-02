@@ -13,6 +13,12 @@ import { CartContext } from "../../contexts/cart.context";
 
 import "./navigation.styles.scss";
 
+/**
+ * NavigationBar
+ *  NavigationBar responsible for take object and return NavigationBar object jsx format
+ *  @returns {object}
+ */
+
 const NavigationBar = () => {
   const { currentUser } = useContext(UserContext);
   const { isCartOpen } = useContext(CartContext);
