@@ -4,6 +4,12 @@ import { CartContext } from "../../contexts/cart.context";
 
 import "./checkout-item.style.scss";
 
+/**
+ * CheckoutItem
+ *  CheckoutItem responsible for take object and return CheckoutItem object jsx format
+ * @param {object} cartItem
+ *  @returns {object}
+ */
 const CheckoutItem = ({ cartItem }) => {
   const { name, imageUrl, quantity, price } = cartItem;
 

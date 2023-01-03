@@ -6,6 +6,10 @@ import SignIn from "./pages/sign-in/sign-in.component.jsx";
 import SignUp from "./pages/sign-up/sign-up.component.jsx";
 import Checkout from "./pages/checkout/checkout.component.jsx";
 
+/**
+ * App
+ * it is giving the Route of Our App 
+ */
 const App = () => {
   return (
     <Routes>

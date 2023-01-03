@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
 import "./categories-list.styles.scss";
 
+/**
+ * CategoryList
+ *  CategoryList responsible for take object and return CategoryList object jsx format
+ * @param {object} category
+ *  @returns {object} 
+ */
 const CategoryList = ({ category }) => {
   const { backgroundImage, categoryTitle } = category;
   return (

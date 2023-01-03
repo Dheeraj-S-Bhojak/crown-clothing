@@ -7,6 +7,11 @@ import "./cart-dropdown.styles.scss";
 import Button from "../button/button.component";
 import CartItem from "../cart-item/cart-item.component";
 
+/**
+ * CartDropdown
+ *  CartDropdown responsible for takes a array data form context and return cart DropDown object
+ * @returns {object}
+ */
 const CartDropdown = () => {
   const { cartItems } = useContext(CartContext);
   const navigate = useNavigate();

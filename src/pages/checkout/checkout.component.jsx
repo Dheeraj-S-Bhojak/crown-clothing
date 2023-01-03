@@ -5,7 +5,13 @@ import CheckoutItem from "../../components/checkout-item/checkout-item.component
 
 import "./checkout.styles.scss";
 
+/**
+ * Checkout
+ *  Checkout responsible for take object and return Checkout object jsx format
+ *  @returns {object}
+ */
 const Checkout = () => {
+  //cartItems and cartTotal de-structure from cartContext
   const { cartItems, cartTotal } = useContext(CartContext);
   return (
     <div className="checkout-container">

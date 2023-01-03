@@ -5,6 +5,12 @@ import Button from "../button/button.component";
 
 import "./product-card.styles.scss";
 
+/**
+ * ProductCard
+ *  ProductCard responsible for take object and return ProductCard object jsx format
+ * @param {object} product
+ *  @returns {object}
+ */
 const ProductCard = ({ product }) => {
   const { name, price, imageUrl } = product;
   const { addItemToCart } = useContext(CartContext);

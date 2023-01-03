@@ -17,16 +17,23 @@ const defaultFormFields = {
   confirmPassword: "",
 };
 
+/**
+ * SignUp
+ *  SignUp responsible for take object and return SignUp object jsx format
+ *  @returns {object}
+ */
 const SignUp = () => {
   const [formFields, setFromFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
   console.log("form", formFields);
 
+  //resetFormFields for clear the form fields
   const resetFormFields = () => {
     setFromFields(defaultFormFields);
   };
 
+  // handleSubmit for submit the form and wait for result
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -49,6 +56,7 @@ const SignUp = () => {
     }
   };
 
+  // handleChange for set the state value from form data
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFromFields({
