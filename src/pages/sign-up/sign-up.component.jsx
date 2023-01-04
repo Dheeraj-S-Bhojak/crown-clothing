@@ -26,8 +26,6 @@ const SignUp = () => {
   const [formFields, setFromFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
-  console.log("form", formFields);
-
   //resetFormFields for clear the form fields
   const resetFormFields = () => {
     setFromFields(defaultFormFields);
