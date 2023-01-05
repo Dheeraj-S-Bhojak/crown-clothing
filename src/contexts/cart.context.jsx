@@ -77,14 +77,29 @@ export const CartProvider = ({ children }) => {
     setCartTotal(totalValue);
   }, [cartItems]);
 
+  /**
+   * addItemToCart
+   * It for responsible for add products in cart
+   * @param {Object} productToAdd
+   */
   const addItemToCart = (productToAdd) => {
     setCartItems(addCartItem(cartItems, productToAdd));
   };
 
+  /**
+   * removeItemToCart
+   * It for responsible for remove products by one in cart
+   * @param {Object} productToRemove
+   */
   const removeItemToCart = (productToRemove) => {
     setCartItems(removeCartItem(cartItems, productToRemove));
   };
 
+  /**
+   * clearItemToCart
+   * It for responsible for remove products in cart
+   * @param {*} productToClear
+   */
   const clearItemToCart = (productToClear) => {
     setCartItems(clearCartItem(cartItems, productToClear));
   };
