@@ -11,7 +11,12 @@ import CartDropdown from "../cart-dropDown/cart-dropdown.component";
 
 import { CartContext } from "../../contexts/cart.context";
 
-import "./navigation.styles.scss";
+import {
+  NavigationContainer,
+  LogoContainer,
+  NavigationLinks,
+  NavigationLink,
+} from "./navigation.styles";
 
 /**
  * NavigationBar
@@ -25,27 +30,23 @@ const NavigationBar = () => {
 
   return (
     <>
-      <div className="navigation">
-        <Link className="logo-container" to="/">
+      <NavigationContainer>
+        <LogoContainer to="/">
           <Logo className="logo" />
-        </Link>
-        <div className="nav-links-container">
-          <Link className="nav-link" to="/shop">
-            SHOP
-          </Link>
+        </LogoContainer>
+        <NavigationLinks>
+          <NavigationLink to="/shop">SHOP</NavigationLink>
           {currentUser ? (
-            <span className="nav-link" onClick={signOutUser}>
+            <NavigationLink as="span" onClick={signOutUser}>
               SIGN OUT
-            </span>
+            </NavigationLink>
           ) : (
-            <Link className="nav-link" to="/sign-in">
-              SIGN IN
-            </Link>
+            <NavigationLink to="/sign-in">SIGN IN</NavigationLink>
           )}
           <CartIcon />
-        </div>
+        </NavigationLinks>
         {isCartOpen && <CartDropdown />}
-      </div>
+      </NavigationContainer>
       <Outlet />
     </>
   );
