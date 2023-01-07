@@ -1,4 +1,6 @@
-import "./cart-item.styles.scss";
+import { USDollar } from "../../utils/currencySign/currencySign";
+
+import { CartItemContainer, ItemDetails } from "./cart-item.styles.jsx";
 
 /**
  * CartItem
@@ -9,15 +11,15 @@ import "./cart-item.styles.scss";
 const CartItem = ({ cartItem }) => {
   const { name, quantity, imageUrl, price } = cartItem;
   return (
-    <div className="cart-item-container">
+    <CartItemContainer>
       <img src={imageUrl} alt={`${name}`} />
-      <div className="item-details">
+      <ItemDetails>
         <span className="name">{name}</span>
         <span className="price">
-          {quantity} x ${price}
+          {quantity} x {USDollar.format(price)}
         </span>
-      </div>
-    </div>
+      </ItemDetails>
+    </CartItemContainer>
   );
 };
 export default CartItem;
