@@ -9,6 +9,12 @@ export const UserContext = createContext({
   setCurrentUser: () => null,
 });
 
+/**
+ * UserProvider
+ * It for responsible for auth User Provider for contexts
+ * @param {Object} param0
+ * @returns
+ */
 export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const value = { currentUser, setCurrentUser };
