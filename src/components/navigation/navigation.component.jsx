@@ -1,8 +1,8 @@
-import { Outlet, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Outlet } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/images/crown.svg";
 
 import { useContext } from "react";
-import { UserContext } from "../../contexts/user.context";
 
 import CartIcon from "../cart-icon/cart-icon.component";
 
@@ -17,6 +17,7 @@ import {
   NavigationLinks,
   NavigationLink,
 } from "./navigation.styles";
+import { selectCurrentUser } from "../../utils/selectors/user.selector";
 
 /**
  * NavigationBar
@@ -25,7 +26,7 @@ import {
  */
 
 const NavigationBar = () => {
-  const { currentUser } = useContext(UserContext);
+  const { currentUser } = useSelector(selectCurrentUser);
   const { isCartOpen } = useContext(CartContext);
 
   return (
