@@ -22,12 +22,12 @@ import {
 const CheckoutItem = ({ cartItem }) => {
   const { name, imageUrl, quantity, price } = cartItem;
 
-  const { addItemToCart, removeItemToCart, clearItemToCart } =
+  const { addItemToCart, removeItemToCart, clearItemFromCart } =
     useContext(CartContext);
 
   const addItemToCartHandler = () => addItemToCart(cartItem);
   const removeItemToCartHandler = () => removeItemToCart(cartItem);
-  const clearItemToCartHandler = () => clearItemToCart(cartItem);
+  const clearItemToCartHandler = () => clearItemFromCart(cartItem);
   return (
     <CheckoutItemContainer>
       <ImageContainer>

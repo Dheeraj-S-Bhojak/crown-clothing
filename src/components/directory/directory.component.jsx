@@ -9,7 +9,7 @@ import { DirectoryContainer } from "./directory.styles.jsx";
 const Directory = ({ categories }) => {
   return (
     <>
-      <DirectoryContainer>
+      <DirectoryContainer> 
         {categories.map((category) => {
           return <DirectoryItem key={category.id} category={category} />;
         })}
