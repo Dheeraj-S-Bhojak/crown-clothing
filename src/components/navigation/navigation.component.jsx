@@ -2,14 +2,10 @@ import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/images/crown.svg";
 
-import { useContext } from "react";
-
 import CartIcon from "../cart-icon/cart-icon.component";
 
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import CartDropdown from "../cart-dropDown/cart-dropdown.component";
-
-import { CartContext } from "../../contexts/cart.context";
 
 import {
   NavigationContainer,
@@ -18,7 +14,7 @@ import {
   NavigationLink,
 } from "./navigation.styles";
 import { selectCurrentUser } from "../../utils/selectors/user.selector";
-
+import { selectIsCartOpen } from "../../utils/selectors/cart.selector";
 /**
  * NavigationBar
  *  NavigationBar responsible for take object and return NavigationBar object jsx format
@@ -27,7 +23,7 @@ import { selectCurrentUser } from "../../utils/selectors/user.selector";
 
 const NavigationBar = () => {
   const { currentUser } = useSelector(selectCurrentUser);
-  const { isCartOpen } = useContext(CartContext);
+  const isCartOpen = useSelector(selectIsCartOpen);
 
   return (
     <>
