@@ -2,7 +2,6 @@
   "name": "crown_s-clothing",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "dependencies": {
     "@redux-devtools/extension": "^3.2.4",
     "@testing-library/jest-dom": "^5.16.5",
