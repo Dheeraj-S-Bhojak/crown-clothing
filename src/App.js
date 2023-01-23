@@ -13,6 +13,7 @@ import {
   createUserDocumentFromAuth,
 } from "./utils/firebase/firebase.utils.js";
 import { setCurrentUser } from "./utils/actions/user.action.js";
+import { setIsCartOpen } from "./utils/actions/cart.action.js";
 /**
  * App
  * it is giving the Route of Our App
